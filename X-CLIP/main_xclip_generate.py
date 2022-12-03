@@ -112,6 +112,7 @@ def get_args(description='X-CLIP on Retrieval Task'):
     parser.add_argument("--pretrained_clip_name", default="ViT-B/32", type=str, help="Choose a CLIP version")
 
     parser.add_argument("--num_generate", default=10, type=int, help="the number of generate new query")
+    parser.add_argument("--mask_mode", default="random_add", type=str, help="random_add,random_replace")
 
     args = parser.parse_args()
 

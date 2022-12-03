@@ -24,7 +24,7 @@ def dataloader_msrvtt_train_gen(args, tokenizer):
         unfold_sentences=args.expand_msrvtt_sentences,
         frame_order=args.train_frame_order,
         slice_framepos=args.slice_framepos,
-        # concept_word_vocab_path=args.concept_word_vocab_path
+        mask_mode=args.mask_mode,
     )
 
     dataloader = DataLoader(

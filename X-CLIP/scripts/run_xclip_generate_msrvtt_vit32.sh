@@ -1,7 +1,7 @@
 # ViT-B/32    --master_port 29501 CUDA_VISIBLE_DEVICES=1 
-job_name="xclipbridge_msrvtt_vit32_recover1masktoken"
+job_name="xclipbridge_msrvtt_vit32_generate1saliencynoveltymasktoken"
 DATA_PATH="/data/tiankaibin/Text2VideoDataset"
-python -m torch.distributed.launch --nproc_per_node=1 --master_port 29506 \
+python -m torch.distributed.launch --nproc_per_node=1 --master_port 29588 \
     main_xclip_generate.py --do_eval --num_thread_reader=8 \
     --lr 1e-4 --batch_size=200  --batch_size_val 200 \
     --epochs=20  --n_display=10 \
@@ -17,4 +17,5 @@ python -m torch.distributed.launch --nproc_per_node=1 --master_port 29506 \
     --freeze_layer_num 12  --slice_framepos 2 \
     --loose_type --linear_patch 2d --sim_header seqTransf \
     --pretrained_clip_name ViT-B/32 \
-    --init_model "ckpts_dsw/xclipbridge_msrvtt_vit32_mlm/pytorch_model.bin.19" 2>&1 | tee -a log/${job_name}
+    --mask_mode "random_add" \
+    --init_model "ckpts_dsw/xclipbridge_msrvtt_vit32_mlm_saliency_novelty/pytorch_model.bin.19" 2>&1 | tee -a log/${job_name}

@@ -587,6 +587,7 @@ class MSRVTT_TrainDataLoader_Gen(Dataset):
             image_resolution=224,
             frame_order=0,
             slice_framepos=0,
+            mask_mode="random_add"
     ):
         self.csv = pd.read_csv(csv_path)
         self.data = json.load(open(json_path, 'r'))
@@ -602,7 +603,7 @@ class MSRVTT_TrainDataLoader_Gen(Dataset):
         #     self.word_vocab_length = len(self.word_vocab)
         self.word_vocab = self.tokenizer.vocab
         self.word_vocab_length = len(self.tokenizer.vocab)
-        self.mask_mode = "random_replace"
+        self.mask_mode = mask_mode
         # "random_add" "random_replace"
 
 
